@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using SuiteSolution.Service.EF;
 using SuiteSolution.Service.Interface;
 using SuiteSolution.Service.Implement;
+using Microsoft.Data.Entity;
 
 namespace SuiteSolution.SuiteWeb
 {
@@ -32,11 +33,19 @@ namespace SuiteSolution.SuiteWeb
             // Add framework services.
             services.AddMvc();
 
+            //services.TryAdd(ServiceDescriptor.Singleton(typeof(IOptions<>), typeof(OptionsManager<>)));
             //services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<,>));
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<SuiteDBContext, SuiteDBContext>();
 
-            services.AddEntityFramework().AddDbContext<SuiteDBContext>();
+            
+          //  services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<,>));
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IApplicationDataService, ApplicationDataService>();
+            services.AddTransient<DbContext, SuiteDBContext>();
+
+            services.AddEntityFramework().AddDbContext<SuiteDBContext>(options =>
+            {
+                options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"].ToString());
+            });
 
         }
 

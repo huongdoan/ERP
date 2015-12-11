@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using SuiteSolution.Service.Interface;
+using SuiteSolution.Service.Entities;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,11 +13,24 @@ namespace SuiteSolution.Web.API
     [Route("api/[controller]")]
     public class UserController : Controller
     {
+        
+        IUserService UserService { get; set; }
+
+        IApplicationDataService ApplicationDataService { get; set; }
+
+        public UserController(IApplicationDataService applicationDataService, IUserService userService)
+        {
+            ApplicationDataService = applicationDataService;
+            UserService = userService;
+        }
+
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+           var users =   UserService.GetAll().ToList();
+            return users;
+          
         }
 
         // GET api/values/5
