@@ -13,6 +13,7 @@ namespace SuiteSolution.Service.EF
 
         public   GenericRepository(C Cxx)
         {
+
             Context = Cxx;
         }
 

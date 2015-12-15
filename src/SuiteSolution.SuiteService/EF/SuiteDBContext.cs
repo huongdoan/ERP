@@ -15,7 +15,7 @@ namespace SuiteSolution.Service.EF
 
         //public SuiteDBContext(DbContextOptions options)
         //: base(options)
-        // { }
+        //{ }
 
         //public SuiteDBContext(DbContextOptions options)
         //: base(options)

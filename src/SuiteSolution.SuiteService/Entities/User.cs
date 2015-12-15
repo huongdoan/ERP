@@ -13,7 +13,5 @@ namespace SuiteSolution.Service.Entities
         public string LastName { get; set; }
         public bool IsActive { get; set; }
         public string Sex { get; set; }
-
-
     }
 }

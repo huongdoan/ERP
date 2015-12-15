@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using SuiteSolution.Service.Interface;
 using SuiteSolution.Service.Entities;
+using SuiteSolution.Service.EF;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,19 +19,23 @@ namespace SuiteSolution.Web.API
 
         IApplicationDataService ApplicationDataService { get; set; }
 
-        public UserController(IApplicationDataService applicationDataService, IUserService userService)
+        SuiteDBContext Context { get; set; }
+
+        public UserController(IApplicationDataService applicationDataService, IUserService userService, SuiteDBContext context)
         {
             ApplicationDataService = applicationDataService;
             UserService = userService;
+            //Context = context;
         }
 
         // GET: api/values
         [HttpGet]
         public IEnumerable<User> Get()
         {
-           var users =   UserService.GetAll().ToList();
-            return users;
-          
+            //return Context.Users.ToList();
+            return  UserService.GetAll().ToList();
+            // return users;
+
         }
 
         // GET api/values/5

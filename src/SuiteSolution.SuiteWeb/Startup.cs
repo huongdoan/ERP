@@ -40,9 +40,9 @@ namespace SuiteSolution.SuiteWeb
           //  services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<,>));
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IApplicationDataService, ApplicationDataService>();
-            services.AddTransient<DbContext, SuiteDBContext>();
+            services.AddTransient<SuiteDBContext, SuiteDBContext>();
 
-            services.AddEntityFramework().AddDbContext<SuiteDBContext>(options =>
+            services.AddEntityFramework().AddSqlServer().AddDbContext<SuiteDBContext>(options =>
             {
                 options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"].ToString());
             });

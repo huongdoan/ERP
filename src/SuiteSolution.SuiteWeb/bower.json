@@ -1,0 +1,32 @@
+{
+  "name": "ASP.NET",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.2",
+    "jquery": "2.1.3",
+    "angular": "",
+    "angular-resource": "",
+    "angular-cookies": "",
+    "angular-route": "",
+    "angular-ui-bootstrap-bower": "0.13.4",
+    "angular-sanitize": "",
+    "angular-block-ui": "",
+    "angularAMD": "",
+    "requirejs": "",
+    "ui-bootstrap": ""
+    
+  },
+  "exportsOverride": {
+    "bootstrap": {
+      "js": "dist/js/*.*",
+      "css": "dist/css/*.*",
+      "fonts": "dist/fonts/*.*"
+    },
+    "jquery": {
+      "js": "dist/*.*"
+    }
+  },
+  "resolutions": {
+    "angular": "~1"
+  }
+}
