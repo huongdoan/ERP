@@ -6,6 +6,8 @@ using Microsoft.AspNet.Mvc;
 using SuiteSolution.Service.Interface;
 using SuiteSolution.Service.Entities;
 using SuiteSolution.Service.EF;
+using SuiteSolution.Web.Models;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -45,11 +47,24 @@ namespace SuiteSolution.Web.API
             return "value";
         }
 
-        // POST api/values
+        /// <summary>
+        /// Register User
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [Route("RegisterUser")]
         [HttpPost]
-        public void Post([FromBody]string value)
+        public AccountsApiModel RegisterUser([FromBody] UserDTO user)
         {
+            TransactionalInformation transaction = new TransactionalInformation();
+
+            Mapper.CreateMap<UserDTO,User>();
+            User user = Mapper.Map<User>(user);
+
+            UserService.RegisterUser(user, out transaction);
         }
+
 
         // PUT api/values/5
         [HttpPut("{id}")]

@@ -14,19 +14,18 @@
     "angularAMD": "",
     "requirejs": "",
     "ui-bootstrap": ""
-    
   },
-  "exportsOverride": {
-    "bootstrap": {
-      "js": "dist/js/*.*",
-      "css": "dist/css/*.*",
-      "fonts": "dist/fonts/*.*"
+    "exportsOverride": {
+      "bootstrap": {
+        "js": "dist/js/*.*",
+        "css": "dist/css/*.*",
+        "fonts": "dist/fonts/*.*"
+      },
+      "jquery": {
+        "js": "dist/*.*"
+      }
     },
-    "jquery": {
-      "js": "dist/*.*"
+    "resolutions": {
+      "angular": "~1.4.8"
     }
-  },
-  "resolutions": {
-    "angular": "~1"
   }
-}
