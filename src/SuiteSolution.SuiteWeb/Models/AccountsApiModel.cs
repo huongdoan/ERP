@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuiteSolution.Web.Models
 {
-    public class AccountsApiModel
+    public class AccountsApiModel : TransactionalInformation
     {
         public List<ApplicationMenu> MenuItems;
         public User User;

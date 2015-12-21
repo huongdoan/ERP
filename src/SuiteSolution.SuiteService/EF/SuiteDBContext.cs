@@ -9,6 +9,8 @@ namespace SuiteSolution.Service.EF
     public class SuiteDBContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
 
         //public SuiteDBContext()
         //{ }
@@ -30,6 +32,7 @@ namespace SuiteSolution.Service.EF
                 {
                     entity.CreatedDate = DateTime.Now;
                     entity.UpdatedDate = DateTime.Now;
+                    entity.Id = Guid.NewGuid();
                     
                 }
                 else if (entry.State == EntityState.Modified)

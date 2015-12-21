@@ -8,6 +8,8 @@ using SuiteSolution.Service.Entities;
 using SuiteSolution.Service.EF;
 using SuiteSolution.Web.Models;
 using AutoMapper;
+using Microsoft.AspNet.Http.Authentication;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,20 +23,25 @@ namespace SuiteSolution.Web.API
 
         IApplicationDataService ApplicationDataService { get; set; }
 
-        SuiteDBContext Context { get; set; }
+        private AuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.Authentication;
+            }
+        }
 
-        public UserController(IApplicationDataService applicationDataService, IUserService userService, SuiteDBContext context)
+
+        public UserController(IApplicationDataService applicationDataService, IUserService userService)
         {
             ApplicationDataService = applicationDataService;
             UserService = userService;
-            //Context = context;
         }
 
         // GET: api/values
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            //return Context.Users.ToList();
             return  UserService.GetAll().ToList();
             // return users;
 
@@ -55,14 +62,50 @@ namespace SuiteSolution.Web.API
         /// <returns></returns>
         [Route("RegisterUser")]
         [HttpPost]
-        public AccountsApiModel RegisterUser([FromBody] UserDTO user)
+        public AccountsApiModel RegisterUser([FromBody] UserDTO userDTO)
         {
+            AccountsApiModel accountsWebApiModel = new AccountsApiModel();
             TransactionalInformation transaction = new TransactionalInformation();
 
             Mapper.CreateMap<UserDTO,User>();
-            User user = Mapper.Map<User>(user);
+            User user = Mapper.Map<User>(userDTO);
 
             UserService.RegisterUser(user, out transaction);
+
+            if (transaction.ReturnStatus == false)
+            {
+                accountsWebApiModel.ReturnMessage = transaction.ReturnMessage;
+                accountsWebApiModel.ReturnStatus = transaction.ReturnStatus;
+                accountsWebApiModel.ValidationErrors = transaction.ValidationErrors;
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return accountsWebApiModel;
+            }
+
+            List<ApplicationMenu> menuItems = ApplicationDataService.GetMenuItems(true, out transaction);
+
+            if (transaction.ReturnStatus == false)
+            {
+                accountsWebApiModel.ReturnMessage = transaction.ReturnMessage;
+                accountsWebApiModel.ReturnStatus = transaction.ReturnStatus;
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return accountsWebApiModel;
+            }
+
+            accountsWebApiModel.IsAuthenicated = true;
+            accountsWebApiModel.ReturnStatus = transaction.ReturnStatus;
+            accountsWebApiModel.ReturnMessage.Add("Register User successful.");
+            accountsWebApiModel.MenuItems = menuItems;
+            accountsWebApiModel.User = user;
+
+            var claims = new List<Claim>
+            {
+                new Claim("userid", user.Id.ToString()),
+            };
+            var id = new ClaimsIdentity(claims, "userid");
+            AuthenticationManager.SignInAsync("Cookies", new ClaimsPrincipal(id));
+            return accountsWebApiModel;
+
+
         }
 
 

@@ -31,6 +31,11 @@ namespace SuiteSolution.Service.BusinessRules
             ValidateEmailAddress("EmailAddress", "Email Address");
         }
 
+        internal void ValidatePassword(object password, object passwordConfirmation)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Validate Unique User Name
         /// </summary>
