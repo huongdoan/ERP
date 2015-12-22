@@ -12,6 +12,9 @@ require.config({
         'angular-route': 'lib/angular-route/angular-route',
         'angularAMD': 'lib/angularAMD/angularAMD',
         'ui-bootstrap': 'lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
+        'ui-grid': 'lib/angular-ui-grid/ui-grid',
+        'angular-touch': 'lib/angular-touch/angular-touch',
+        'angular-animate': 'lib/angular-touch/angular-animate',
         'blockUI': 'lib/angular-block-ui/dist/angular-block-ui',
         'ngload': 'lib/angularAMD/ngload',
         'angular-sanitize': 'lib/angular-sanitize/angular-sanitize',
@@ -20,8 +23,10 @@ require.config({
         'alertsService': 'services/alertsServices',
         'accountsService': 'services/accountsServices',
         'customersService': 'services/customersServices',
+        'productService': 'services/productServices',
         'defaultController': 'controllers/defaultController',
-        'loginController': 'controllers/loginController'
+        'loginController': 'controllers/loginController',
+        'productController': 'controllers/productController'
     },
 
     // Add angular modules that does not support AMD out of the box, put it in a shim
@@ -32,6 +37,7 @@ require.config({
         'blockUI': ['angular'],
         'angular-sanitize': ['angular'],
         'ui-bootstrap': ['angular'],
+        'ui-grid': ['angular'],
         'ngload': ['angularAMD']
 
     },

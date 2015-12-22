@@ -1,17 +1,27 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('app')
-        .controller('productController', productController);
+    //angular
+    //    .module('app')
+    //    .controller('productController', productController);
 
-    productController.$inject = ['$scope']; 
+    //productController.$inject = ['$scope']; 
 
-    function productController($scope) {
-        $scope.title = 'productController';
+    //function productController($scope) {
+    //    $scope.title = 'productController';
 
-        activate();
+    //    activate();
 
-        function activate() { }
-    }
+    //    function activate() { }
+    //}
+
+
+    define(['application-configuration', 'ui-grid', 'productService', 'alertsService'], function (app) {
+        app.register.controller('productController', ['$scope', '$rootScope', 'productService', 'alertsService', function ($scope, $rootScope, productService, alertsService) {
+
+        }]);
+    });
+
+
+
 })();

@@ -35,8 +35,11 @@
 
                .when("/", angularAMD.route({
 
-                   templateUrl: function (rp) { return 'Views/Main/default.html'; },
-                   controllerUrl: "controllers/defaultController"
+                   //templateUrl: function (rp) { return 'Views/Main/default.html'; },
+                   //controllerUrl: "controllers/defaultController"
+
+                   templateUrl: function (rp) { return 'Views/product/product.html'; },
+                   controllerUrl: "controllers/productController"
 
                }))
 
