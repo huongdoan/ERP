@@ -2,7 +2,7 @@
     'use strict';
 
     define(['angularAMD', 'angular-route', 'ui-bootstrap', 'angular-sanitize', 'blockUI', 'ngload'], function (angularAMD) {
-        var app = angular.module("AngularSuiteApp", ['ngRoute', 'blockUI', 'ngSanitize', 'ui.bootstrap']);
+        var app = angular.module("AngularSuiteApp", ['ngRoute', 'blockUI', 'ngSanitize', 'ui.bootstrap', 'ngTouch', 'ui.grid', 'ui.grid.pagination', 'ui.grid.selection', 'ui.grid.exporter']);
 
         app.filter("leadingZeroes", function () {
             return function (data) {
