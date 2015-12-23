@@ -2,6 +2,7 @@
 
     app.register.service('productsService', ['ajaxService', function (ajaxService) {
 
+
         this.importProducts = function (successFunction, errorFunction) {
             ajaxService.AjaxGet("/api/products/ImportProducts", successFunction, errorFunction);
         };
@@ -25,6 +26,8 @@
         this.getProduct = function (productID, successFunction, errorFunction) {
             ajaxService.AjaxGetWithData(productID, "/api/products/GetProduct", successFunction, errorFunction);
         };
+
+        
 
     }]);
 });
