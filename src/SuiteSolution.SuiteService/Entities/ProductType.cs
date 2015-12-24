@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SuiteSolution.Service.Entities
 {
-    public class ProductType
+    public class ProductType: Entity
     {
         public string Code { get; set; }
         public string Name { get; set; }

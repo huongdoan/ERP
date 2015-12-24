@@ -42,7 +42,7 @@ namespace SuiteSolution.Web.API
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            return  UserService.GetAll().ToList();
+            return UserService.GetAll().ToList();
             // return users;
 
         }

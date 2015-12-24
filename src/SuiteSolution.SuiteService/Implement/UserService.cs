@@ -14,9 +14,14 @@ namespace SuiteSolution.Service.Implement
         
         AccountsBusinessRules AccountsBusinessRules { get; set; }
 
-        public UserService(SuiteDBContext db, AccountsBusinessRules accountsBusinessRules) :base(db)
+        //public UserService(SuiteDBContext db, AccountsBusinessRules accountsBusinessRules) :base(db)
+        //{
+        //    AccountsBusinessRules = accountsBusinessRules;
+        //}
+
+        public UserService(SuiteDBContext db) : base(db)
         {
-            AccountsBusinessRules = accountsBusinessRules;
+            AccountsBusinessRules = new AccountsBusinessRules(this);
         }
 
         public User RegisterUser(User user, out TransactionalInformation transaction)

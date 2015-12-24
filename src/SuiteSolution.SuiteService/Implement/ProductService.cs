@@ -15,9 +15,9 @@ namespace SuiteSolution.Service.Implement
 
         ProductBusinessRules ProductBusinessRules { get; set; }
 
-        public ProductService(SuiteDBContext db, ProductBusinessRules productBusinessRules) :base(db)
+        public ProductService(SuiteDBContext db) :base(db)
         {
-            ProductBusinessRules = productBusinessRules;
+            ProductBusinessRules = new ProductBusinessRules(this);
         }
 
         public IPagedList<Product> Search(ProductCriteria criteria)

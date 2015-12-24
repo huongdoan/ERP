@@ -14,7 +14,7 @@ require.config({
         'ui-bootstrap': 'lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
         'ui-grid': 'lib/angular-ui-grid/ui-grid',
         'angular-touch': 'lib/angular-touch/angular-touch',
-        'angular-animate': 'lib/angular-touch/angular-animate',
+        'angular-animate': 'lib/angular-animate/angular-animate',
         'blockUI': 'lib/angular-block-ui/dist/angular-block-ui',
         'ngload': 'lib/angularAMD/ngload',
         'angular-sanitize': 'lib/angular-sanitize/angular-sanitize',
@@ -23,7 +23,7 @@ require.config({
         'alertsService': 'services/alertsServices',
         'accountsService': 'services/accountsServices',
         'customersService': 'services/customersServices',
-        'productService': 'services/productServices',
+        'productService': 'services/productService',
         'defaultController': 'controllers/defaultController',
         'loginController': 'controllers/loginController',
         'productController': 'controllers/productController'
@@ -38,6 +38,8 @@ require.config({
         'angular-sanitize': ['angular'],
         'ui-bootstrap': ['angular'],
         'ui-grid': ['angular'],
+        'angular-animate': ['angular'],
+        'angular-touch': ['angular'],
         'ngload': ['angularAMD']
 
     },

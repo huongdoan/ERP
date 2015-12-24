@@ -4,31 +4,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using SuiteSolution.Service.Interface;
-using SuiteSolution.Service.Entities;
-using SuiteSolution.Service.Entities.SearchResult;
+using SuiteSolution.Service.EF;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SuiteSolution.Web.API
 {
     [Route("api/[controller]")]
-    public class ProductController : Controller
+    public class ValuesController : Controller
     {
-        
-        public IProductService ProductService { get; set; }
+        //[FromServices]
+        //public IProductService ProductService { get; set; }
+        [FromServices]
+        IUserService UserService { get; set; }
 
+        [FromServices]
+        public IApplicationDataService ApplicationDataService { get; set; }
 
-        public ProductController(IProductService productService)
-        {
-            ProductService = productService;
-        }
+        [FromServices]
+        public SuiteDBContext SuiteDBContext { get; set; }
         // GET: api/values
         [HttpGet]
-        public PagedList<Product> Get(ProductCriteria criteria)
+        public IEnumerable<string> Get()
         {
 
-            var rs =  ProductService.Search(criteria);
-            return (PagedList<Product>) rs;
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5

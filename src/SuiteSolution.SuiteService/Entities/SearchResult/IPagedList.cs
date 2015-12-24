@@ -11,6 +11,7 @@ namespace SuiteSolution.Service.Entities.SearchResult
         int PageCount { get; }
         int Page { get; }
         int PageSize { get; }
+        List<T> Results { get; }
     }
 
     public class PagedList<T> : List<T>, IPagedList<T>

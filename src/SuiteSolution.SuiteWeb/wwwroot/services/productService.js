@@ -1,6 +1,6 @@
 ﻿define(['application-configuration', 'ajaxService'], function (app) {
 
-    app.register.service('productsService', ['ajaxService', function (ajaxService) {
+    app.register.service('productService', ['ajaxService', function (ajaxService) {
 
 
         this.importProducts = function (successFunction, errorFunction) {

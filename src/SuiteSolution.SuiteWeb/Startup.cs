@@ -11,6 +11,7 @@ using SuiteSolution.Service.EF;
 using SuiteSolution.Service.Interface;
 using SuiteSolution.Service.Implement;
 using Microsoft.Data.Entity;
+using SuiteSolution.Service.BusinessRules;
 
 namespace SuiteSolution.SuiteWeb
 {
@@ -33,11 +34,8 @@ namespace SuiteSolution.SuiteWeb
             // Add framework services.
             services.AddMvc();
 
-            //services.TryAdd(ServiceDescriptor.Singleton(typeof(IOptions<>), typeof(OptionsManager<>)));
             //services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<,>));
-
-            
-          //  services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<,>));
+            services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IApplicationDataService, ApplicationDataService>();
             services.AddTransient<SuiteDBContext, SuiteDBContext>();

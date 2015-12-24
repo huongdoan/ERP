@@ -14,7 +14,7 @@ namespace SuiteSolution.Service.Entities
         public byte[] ThumbNailPhoto { get; set; }
 
         public string FileName { get; set; }
-        public Guid ProductType { get; set; }
+        public Guid? ProductType { get; set; }
 
         public string Description { get; set; }
 
