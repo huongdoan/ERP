@@ -4,27 +4,27 @@
 
 
         this.importProducts = function (successFunction, errorFunction) {
-            ajaxService.AjaxGet("/api/products/ImportProducts", successFunction, errorFunction);
+            ajaxService.AjaxGet("/api/product/ImportProducts", successFunction, errorFunction);
         };
 
         this.getProducts = function (product, successFunction, errorFunction) {
-            ajaxService.AjaxGetWithData(product, "/api/products/GetProducts", successFunction, errorFunction);
+            ajaxService.AjaxGetWithData(product, "/api/product", successFunction, errorFunction);
         };
              
         this.getProductsWithNoBlock = function (product, successFunction, errorFunction) {
-            ajaxService.AjaxGetWithNoBlock(product, "/api/products/GetProducts", successFunction, errorFunction);
+            ajaxService.AjaxGetWithNoBlock(product, "/api/product/GetProducts", successFunction, errorFunction);
         };
 
         this.createProduct = function (product, successFunction, errorFunction) {
-            ajaxService.AjaxPost(product, "/api/products/CreateProduct", successFunction, errorFunction);
+            ajaxService.AjaxPost(product, "/api/product/CreateProduct", successFunction, errorFunction);
         };
 
         this.updateProduct = function (product, successFunction, errorFunction) {
-            ajaxService.AjaxPost(product, "/api/products/UpdateProduct", successFunction, errorFunction);
+            ajaxService.AjaxPost(product, "/api/product/UpdateProduct", successFunction, errorFunction);
         };
 
         this.getProduct = function (productID, successFunction, errorFunction) {
-            ajaxService.AjaxGetWithData(productID, "/api/products/GetProduct", successFunction, errorFunction);
+            ajaxService.AjaxGetWithData(productID, "/api/product/GetProduct", successFunction, errorFunction);
         };
 
         

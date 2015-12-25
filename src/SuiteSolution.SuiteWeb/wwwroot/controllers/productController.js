@@ -3,15 +3,25 @@
 define(['application-configuration', 'productService', 'alertsService'], function (app) {
 
     app.register.controller('productController', ['$scope', '$rootScope', 'productService', 'alertsService', function ($scope, $rootScope, productService, alertsService) {
+        $scope.EditClick = function (row) {
+        };
+
+        $scope.Delete = function (grid, row) {
+        };
+
+
+
         $scope.gridOptions = {
             paginationPageSizes: [25, 50, 75],
             paginationPageSize: 25,
             useExternalPagination: true,
             useExternalSorting: true,
             columnDefs: [
-              { name: 'name' },
-              { name: 'code'},
-              { name: 'description' }
+              { name: 'Name' },
+              { name: 'Code'},
+              { name: 'Description' },
+              { name: 'UnitPrice' },
+              { name: 'Action', cellEditableCondition: false, cellTemplate: '<button type="button" class="btn btn-primary btn-sm" ng-click="grid.appScope.EditClick(row)">Edit</button> <button type="button" class="btn btn-primary btn-sm" ng-click="DeleteClick(grid,row)">Delete</button>' }
             ],
             onRegisterApi: function (gridApi) {
                 $scope.gridApi = gridApi;
@@ -30,6 +40,8 @@ define(['application-configuration', 'productService', 'alertsService'], functio
                 });
             }
         };
+
+       
 
         var getPage = function () {
 
@@ -62,12 +74,13 @@ define(['application-configuration', 'productService', 'alertsService'], functio
 
         var susccessGetPage = function(data){
             $scope.gridOptions.totalItems = data.TotalCount;
-            $scope.gridOptions.data = data;
+            $scope.gridOptions.data = data.Results;
         };
 
         var failGetPage = function(data){
 
         };
+        getPage();
 
 
     }]);
