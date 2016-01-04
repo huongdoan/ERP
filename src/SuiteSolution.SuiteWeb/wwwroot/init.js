@@ -26,7 +26,8 @@ require.config({
         'productService': 'services/productService',
         'defaultController': 'controllers/defaultController',
         'loginController': 'controllers/loginController',
-        'productController': 'controllers/productController'
+        'productController': 'controllers/productController',
+        'modal': 'directives/modal'
     },
 
     // Add angular modules that does not support AMD out of the box, put it in a shim

@@ -11,5 +11,7 @@ namespace SuiteSolution.Service.Interface
     public interface IProductService : IGenericRepository<Product>
     {
         IPagedList<Product> Search(ProductCriteria criteria);
+        Product CreateProduct(Product value, out TransactionalInformation transaction);
+        bool ValidateDuplicateProduct(Product product);
     }
 }

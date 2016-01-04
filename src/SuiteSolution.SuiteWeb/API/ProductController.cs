@@ -6,6 +6,8 @@ using Microsoft.AspNet.Mvc;
 using SuiteSolution.Service.Interface;
 using SuiteSolution.Service.Entities;
 using SuiteSolution.Service.Entities.SearchResult;
+using SuiteSolution.Web.Models;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,6 +33,30 @@ namespace SuiteSolution.Web.API
             return (PagedList<Product>) rs;
         }
 
+        [Route("CreateProduct")]
+        [HttpPost]
+        public ProductsApiModel CreateProduct([FromBody]Product value)
+        {
+            ProductsApiModel productsWebApiModel = new ProductsApiModel();
+            TransactionalInformation transaction = new TransactionalInformation();
+
+            var product = ProductService.CreateProduct(value,out transaction);
+
+            if (transaction.ReturnStatus == false)
+            {
+                Response.StatusCode = (int) HttpStatusCode.BadRequest;
+            }
+
+            productsWebApiModel.ReturnMessage = transaction.ReturnMessage;
+            productsWebApiModel.ReturnStatus = transaction.ReturnStatus;
+            productsWebApiModel.ValidationErrors = transaction.ValidationErrors;
+            productsWebApiModel.Product = product;
+
+            return productsWebApiModel;
+        }
+
+
+
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -38,11 +64,6 @@ namespace SuiteSolution.Web.API
             return "value";
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
 
         // PUT api/values/5
         [HttpPut("{id}")]
