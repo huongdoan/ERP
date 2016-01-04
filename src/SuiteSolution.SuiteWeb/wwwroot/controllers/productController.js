@@ -220,10 +220,10 @@ define(['application-configuration', 'productService', 'alertsService','modal'],
         $scope.createProduct = function () {
 
             var product = $scope.createProductObject();
-            productService.createProduct(product, $scope.createCustomerCompleted, $scope.createCustomerError);
+            productService.createProduct(product, $scope.createProductCompleted, $scope.createProductError);
         }
 
-        $scope.createCustomerCompleted = function (response, status) {
+        $scope.createProductCompleted = function (response, status) {
 
             $scope.EditMode = false;
             $scope.DisplayMode = true;
@@ -237,7 +237,7 @@ define(['application-configuration', 'productService', 'alertsService','modal'],
             $scope.setOriginalValues();
         }
 
-        $scope.createCustomerError = function (response) {
+        $scope.createProductError = function (response) {
             alertsService.RenderErrorMessage(response.ReturnMessage);
             $scope.clearValidationErrors();
             alertsService.SetValidationErrors($scope, response.ValidationErrors);
@@ -245,8 +245,8 @@ define(['application-configuration', 'productService', 'alertsService','modal'],
 
         $scope.clearValidationErrors = function () {
 
-            $scope.CustomerCodeInputError = false;
-            $scope.CompanyNameInputError = false;
+            $scope.CodeInputError = false;
+            $scope.NameInputError = false;
 
         }
         $scope.createProductObject = function () {

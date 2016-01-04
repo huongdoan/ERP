@@ -398,7 +398,7 @@ namespace SuiteSolution.Service.BusinessRules
             public void AddValidationError(string propertyName, string errorMessage)
             {
 
-                if (_validationErrors.Any(d=>d.Key == propertyName))
+                if (!_validationErrors.Any(d=>d.Key == propertyName))
                 {
                     _validationErrors.Add(propertyName, errorMessage);
                     _validationMessage.Add(errorMessage);

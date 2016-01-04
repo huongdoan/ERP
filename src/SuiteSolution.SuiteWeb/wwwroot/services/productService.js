@@ -16,7 +16,7 @@
         };
 
         this.createProduct = function (product, successFunction, errorFunction) {
-            ajaxService.AjaxPost(product, "/api/product/CreateProduct", successFunction, errorFunction);
+            ajaxService.AjaxPostWithNoAuthenication(product, "/api/product/CreateProduct", successFunction, errorFunction);
         };
 
         this.updateProduct = function (product, successFunction, errorFunction) {

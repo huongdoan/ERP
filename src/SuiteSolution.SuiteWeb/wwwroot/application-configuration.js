@@ -35,11 +35,11 @@
 
                .when("/", angularAMD.route({
 
-                   //templateUrl: function (rp) { return 'Views/Main/default.html'; },
-                   //controllerUrl: "controllers/defaultController"
+                   templateUrl: function (rp) { return 'Views/Main/default.html'; },
+                   controllerUrl: "controllers/defaultController"
 
-                   templateUrl: function (rp) { return 'Views/product/product.html'; },
-                   controllerUrl: "controllers/productController"
+                   //templateUrl: function (rp) { return 'Views/product/product.html'; },
+                   //controllerUrl: "controllers/productController"
 
                }))
 
@@ -152,8 +152,8 @@
 
             $scope.authenicateUserComplete = function (response) {
 
-                if (response.IsAuthenicated == false)
-                    window.location = "/index.html";
+                //if (response.IsAuthenicated == false)
+                //    window.location = "/index.html";
             }
 
             $scope.authenicateUserError = function (response) {

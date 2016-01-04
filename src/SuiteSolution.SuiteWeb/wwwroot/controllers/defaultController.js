@@ -16,7 +16,7 @@ define(['application-configuration', 'mainService', 'alertsService'], function (
             $rootScope.displayContent = true;
         
             if (response.IsAuthenicated == true) {
-                window.location = "/#/Customers";
+                window.location = "/#/product";
             }
             else {       
                 

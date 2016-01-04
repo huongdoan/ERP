@@ -18,14 +18,15 @@ namespace SuiteSolution.Service.BusinessRules
 
         internal void ValidateProduct(Product value)
         {
-           
 
+            InitializeValidationRules(value);
             ValidateRequired("Code", "Code");
             ValidateRequired("Name", "Name");
             ValidateRequired("UnitOfMeasure", "Unit Of Measure");
             ValidateDecimalIsNotZero("UnitPrice", "Unit Price");
             ValidateDecimalGreaterThanZero("UnitPrice", "Unit Price");
 
+            if(!string.IsNullOrEmpty(value.Code))
             ValidateUniqueProductCode(value);
         }
 

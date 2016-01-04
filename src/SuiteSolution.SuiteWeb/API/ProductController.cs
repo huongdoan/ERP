@@ -44,7 +44,7 @@ namespace SuiteSolution.Web.API
 
             if (transaction.ReturnStatus == false)
             {
-                Response.StatusCode = (int) HttpStatusCode.BadRequest;
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
             }
 
             productsWebApiModel.ReturnMessage = transaction.ReturnMessage;
