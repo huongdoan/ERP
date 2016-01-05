@@ -1,71 +1,30 @@
 ﻿"use strict";
 
-define(['application-configuration', 'productService', 'alertsService','modal'], function (app) {
+define(['application-configuration', 'angular-animate', 'ui-bootstrap', 'productService', 'alertsService'], function (app) {
 
-    app.register.controller('productController', ['$scope', '$rootScope', '$routeParams', 'productService', 'alertsService', 'modal', function ($scope, $rootScope, $routeParams, productService, alertsService, modal) {
+    app.register.controller('productController', ['$scope', '$rootScope', '$routeParams', 'productService', 'alertsService', '$uibModal', function ($scope, $rootScope, $routeParams, productService, alertsService, $uibModal) {
 
+        $scope.item = {};
+        $scope.animationsEnabled = true;
+        $scope.open = function (size) {
 
-        $scope.modal = modal;       //modal
-
-        $scope.currentItem = {};
-
-
-        $scope.setCurrentItem = function (item) {
-            $scope.currentItem = item;
-        }
-
-        $scope.delete = function (item) {         //deleting item
-            itemList.remove(item);
-            $scope.counter--;
-        }
-
-        $scope.selectedItems = function () {
-            return _.where($scope.items, {
-                selected: true
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'myModalContent.html',
+                controller: 'productModalController',
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.item;
+                    }
+                }
             });
-        }
-
-        $scope.itemFormValid = function () {            //validation;
-            return $scope.currentItem.entry;           // required field!!
-        }
-
-        $scope.deselectAllItems = function () {
-            return _.each($scope.items, function (item) {
-                item.selected = false;
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                //after 
             });
-        }
-
-        $scope.newItem = function () {                  //creating new item
-            $scope.setCurrentItem({ entry: null });
-            modal.itemForm.on = true;                   //modal itemForm showing
-            $scope.deselectAllItems();
-        }
-
-        $scope.editItems = function (item) {            //editing item
-            item.selected = true;                       //making item selected
-            $scope.setCurrentItem(angular.copy(item));
-            modal.itemForm.on = true;                   //modal itemForm showing
-        }
-
-
-        $scope.setContra = function (contra_item) {
-            $scope.selected = contra_item;
-            $scope.setCurrentItem({ contra: $scope.selected.no, contra_name: $scope.selected.name });
-            modal.contraSelector.on = false;
-            modal.itemForm.on = true;
-        }
-
-        $scope.isContraSelected = function (contra_item) {
-            return $scope.selected === contra_item;
-        }
-
-        $scope.contraSelector = function () {
-            $scope.setCurrentItem({ entry: null });
-            modal.itemForm.on = false;
-            modal.contraSelector.on = true;
-            $scope.deselectAllItems();
-        }
-
+        };
 
 
 
@@ -146,8 +105,27 @@ define(['application-configuration', 'productService', 'alertsService','modal'],
         var failGetPage = function(data){
 
         };
-        // getPage();
+         getPage();
 
+
+
+        
+
+    }]);
+
+
+
+
+
+    app.register.controller('productModalController', ['$scope', '$rootScope', '$routeParams', 'productService', 'alertsService', '$uibModalInstance', 'items', function ($scope, $rootScope, $routeParams, productService, alertsService, $uibModalInstance, items) {
+
+        $scope.ok = function () {
+            $uibModalInstance.close($scope.selected.item);
+        };
+
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
 
 
         //Create Page Session
@@ -265,6 +243,7 @@ define(['application-configuration', 'productService', 'alertsService','modal'],
 
         }
 
+        $scope.initializeController();
     }]);
 });
 
